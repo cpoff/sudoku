@@ -7,6 +7,7 @@ var gameboard_rows = []
 var gameboard_columns = []
 var gameboard_block = []
 var len = game.length
+
     //create row arrays
 for (var x = 0, num = 0; x < 9; x++) {
     num += 9;
