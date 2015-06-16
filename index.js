@@ -17,6 +17,7 @@ var gameboard_row_arrays = gameboard_rows.map(function(thing) {
     return thing.split('')
 })
 console.log(gameboard_row_arrays)
+
     //create array of columns
 for (var x = 0, column = 0; x < 81; x++) {
     if (x < 9) {
@@ -36,6 +37,7 @@ var gameboard_columns_arrays = gameboard_columns.map(function(thing) {
     return thing.split('')
 })
 console.log(gameboard_columns_arrays)
+
     //create array of blocks
 for (var x = 0, grid = 0; x < 81; x += 3) {
     if (x < 9) {
