@@ -7,7 +7,7 @@ var possibleNums = [1,2,3,4,5,6,7,8,9];
 
 //TEMPLATE
 describe("Game", function() {
-  describe("constructor", function() {
+  describe("constructor, if needed", function() {
     it("function description here", function() {
       expect(Game.name).to.equal("blah");
     })
@@ -33,12 +33,12 @@ describe('confirm', function() {
 
 -load (should ingest string, should fill in some squares from the string)
 
--solve (fill in every square with correct number)
-describe('solve', function() {
-  it('confirms all squares have been filled', function() { 
-    expect(square.notFinished.length()).to.equal(0);
-  })
-});
+-solve (fill in every square with correct number) DO NOT NEED!!
+//describe('solve', function() {
+//  it('confirms all squares have been filled', function() {
+//    expect(square.notFinished.length()).to.equal(0);
+//  })
+//});
 
 -show, update square (mark as done, remember changes) DO NOT NEED!!
 //describe('update', function() {
@@ -49,7 +49,6 @@ describe('solve', function() {
 //});
 
 -get (return digit in a given square):
-
 describe('get', function() {
   it('return value of given square', function() {   
       expect(square.finished()).to.be.a('number');
@@ -57,9 +56,10 @@ describe('get', function() {
     })
 });
 
--needed (which numbers missing from row,col,block)
+!!!!
+-needed (which numbers missing from row,col,block. duplicate for col/block as needed.)
 describe('neededRow', function() {
-  it('return value of given square', function() {   
+  it('return square numbers for remaining blanks', function() {
     expect(game.remaining.row()).to.be.within(-1, 10)
     })
 });
