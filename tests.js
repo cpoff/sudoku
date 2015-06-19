@@ -1,8 +1,7 @@
-Game math for board grid
-column: modulus ('mod' or %), 10 mod 9 is 1 (look it up!)
+Game math for board grid - modulus ('mod' or %)
+column: , 10 mod 9 (10/9, remainder 1) is 1 (look it up!)
 row: divide by 9. square/9 then math.floor
 block: square/3 math.floor then mod 3.
-
 
 var possibleNums = [1,2,3,4,5,6,7,8,9];
 
@@ -84,7 +83,7 @@ describe('Game', function() {
 -look for squares (know how many holes it needs to fill per row/col/block)
 describe('Game', function() {
     describe('lookSquares', function() {
-      it('return the number of unfinished squares remaining in row/col/block. nine squares per, so count the number fo "." instances')  
+      it('return the number of unfinished squares remaining in row/col/block.')
           expect(square.finished()).to.be.a('number');
           expect(square.notFinished()).to.equal('.');
     })
@@ -93,7 +92,7 @@ describe('Game', function() {
 -locate row/col/block
 
 describe('locateRow', function() {
-  it('should return a row number within range 0-8', function() {
+  it('should return a row number within range 0-8. based on math', function() {
       expect(game.locateRow(squareNum)).to.be.a('number');
       expect(game.locateRow(17)).to.equal(1);
       expect(game.locateRow(0)).to.be.a(0);
