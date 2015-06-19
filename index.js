@@ -1,13 +1,18 @@
 var _ = require('lodash');
- 
+var printer = require('./boardprint.js')
+
 var game =
-    '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+    '158.2..6.2...8..9..3..7.8.2.6.74......4.6.7......19.5.4.9.3..2..2..5...8.7..9.413'
 var game1 =
     '158.2..6.2...8..9..3..7.8.2.6.74......4.6.7......19.5.4.9.3..2..2..5...8.7..9.413'
 console.log('This is the game ' + game)
 
 var fun = game.split('')
 console.log(game)
+
+var boardArray = game.split('');
+console.log('BEFORE: ');
+printer(boardArray);
 
 //------ Version 5
 function Sqr(row,col,block) {
@@ -84,16 +89,12 @@ function Grid(size) {
         row = function(){
             var sum = 0;
             this.row.forEach(function(sqr){
-
             })
         },
         col = function(){
-
         },
         block = function(){
-
-        } 
-
+        }
     }
     */
 }
@@ -137,7 +138,6 @@ for(var x = 0; x < 9;x++){
             var col = _.pluck(grid.col[y].sqrs,'value')
             var block = _.pluck(grid.block[z].sqrs,'value')
             if(_.difference(completedArray,row,col,block).length === 1){
-
                 var val = _.difference(completedArray,row,col,block)[0]
                 grid.row[x].sqrs[].value = val;
             }
@@ -148,10 +148,9 @@ for(var x = 0; x < 9;x++){
 
 console.log(grid.rows[1].sqrs)
 
-var solve = function(){
+//filter
 var counterzzz = 0
-
-while(grid.remaining() > 0 && counterzzz < 6){
+while(grid.remaining() > 0 && counterzzz < 20){
     for(var x = 0; x < 9;x++){
         for(var y = 0; y < 9;y++){
             if(grid.rows[x].sqrs[y].value === '.'){
@@ -166,11 +165,6 @@ while(grid.remaining() > 0 && counterzzz < 6){
                     grid.rows[x].sqrs[y].value = val;
                     console.log('we changed something')
                 }
-                else if(_.difference(completedArray,rowArray,colArray,blockArray).length === 2){
-                    var valArr = _.difference(completedArray,rowArray,colArray,blockArray)
-                    var val = valArr[Math.floor(Math.random() * valArr.length)];
-                    grid.rows[x].sqrs[y].value = val;
-                }
             } else{
                 console.log('You\'re good!')
             }
@@ -178,11 +172,6 @@ while(grid.remaining() > 0 && counterzzz < 6){
     }
     counterzzz++;
     console.log(counterzzz)
-    console.log(grid.remaining())
-    }
-}//console.log(grid.rows[1].sqrs)
+        console.log(grid.remaining());
 
-solve()
-
-
-
+}
