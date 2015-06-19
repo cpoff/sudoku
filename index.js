@@ -5,75 +5,76 @@ var game =
 var game1 =
     '158.2..6.2...8..9..3..7.8.2.6.74......4.6.7......19.5.4.9.3..2..2..5...8.7..9.413'
 console.log('This is the game ' + game)
-var gameboard_rows = []
-var gameboard_columns = []
-var gameboard_block = []
-var len = game.length
 
-    //create row arrays
-for (var x = 0, num = 0; x < 9; x++) {
-    num += 9;
-    gameboard_rows[x] = game.slice(num - 9, num)
+var fun = game.split('')
+console.log(game)
+
+//------ Version 5
+function Sqr(row,col,block) {
+    this.row = row;
+    this.col = col;
+    this.block = block
+    row.sqrs.push(this); // this.rows[0].sqrs
+    col.sqrs.push(this);
+    block.sqrs.push(this);
 }
-var gameboard_row_arrays = gameboard_rows.map(function(thing) {
-    return thing.split('')
-})
-console.log(gameboard_row_arrays)
 
-    //create array of columns
-for (var x = 0, column = 0; x < 81; x++) {
-    if (x < 9) {
-        gameboard_columns[column] = game.slice(x, x + 1)
-    }
-    if (x > 8) {
-        gameboard_columns[column] = gameboard_columns[column] + game.slice(x, x +
-            1)
-    }
-    if (column === 8) {
-        column = 0;
-    } else {
-        column += 1;
-    }
+function Col(grid) {
+    this.grid = grid;
+    this.sqrs = [];
 }
-var gameboard_columns_arrays = gameboard_columns.map(function(thing) {
-    return thing.split('')
-})
-console.log(gameboard_columns_arrays)
 
-    //create array of blocks
-for (var x = 0, grid = 0; x < 81; x += 3) {
-    if (x < 9) {
-        gameboard_block[grid] = game.slice(x, x + 3)
-    } else if ((9 <= x) && (x <= 24)) {
-        gameboard_block[grid] = gameboard_block[grid] + game.slice(x, x + 3)
-    } else if ((27 <= x) && (x <= 33)) {
-        gameboard_block[grid] = game.slice(x, x + 3)
-    } else if ((33 < x) && (x <= 51)) {
-        gameboard_block[grid] = gameboard_block[grid] + game.slice(x, x + 3)
-    } else if ((54 <= x) && (x <= 60)) {
-        gameboard_block[grid] = game.slice(x, x + 3)
-    } else if ((60 < x) && (x <= 78)) {
-        gameboard_block[grid] = gameboard_block[grid] + game.slice(x, x + 3)
+function Row(grid) {
+    this.grid = grid;
+    this.sqrs = [];
+}
+
+function Block(grid){
+    this.grid = grid;
+    this.sqrs = [];
+}
+
+function Grid(size) {
+
+    this.rows = [];
+    this.cols = [];
+    this.blocks = [];
+
+    for (var i=0; i<size; i++) {
+        this.rows[i] = new Row(this);
+        this.cols[i] = new Col(this);
+        this.blocks[i] = new Block(this);
     }
-    grid++
-    if (grid === 3 && x <= 24) {
-        grid = 0;
-        if (x === 24) {
-            grid = 3;
+
+    for (var r=0; r<size; r++) {
+        for (var c=0; c<size; c++) {
+            var b = (Math.floor(r/3)*3) + Math.floor(c/3)       
+            new Sqr(this.rows[r],this.cols[c],this.blocks[b]);  
         }
     }
-    if (grid === 6 && 27 < x <= 54) {
-        grid = 3;
-        if (x === 51) {
-            grid = 6
+
+    this.remaining = function(){
+        var counter = 0;
+        for(var x = 0; x < 9; x++){
+            for(var y = 0; y < 9; y++){
+                if(this.rows[x].sqrs[y] === '.'){counter++}
+            }
         }
-    }
-    if (grid === 9 && (54 < x < 81)) {
-        grid = 6;
+        return counter;
     }
 }
-var gameboard_block_arrays = gameboard_block.map(function(thing) {
-    return thing.split('')
-})
-console.log(gameboard_block_arrays)
+
+var grid = new Grid(9);
+
+var arrGrid1 = game.split('');
+
+for(var x = 0; x < 9;x++){
+    for(var y = 0; y < 9;y++){
+        grid.rows[x].sqrs[y] = arrGrid1.shift()
+    }
+}
+
+var completedArray = [1,2,3,4,5,6,7,8,9]
+
+console.log(grid.remaining())
 
