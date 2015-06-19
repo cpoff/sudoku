@@ -1,5 +1,5 @@
-var fakeArray = [];
-//    require('../fakearray.js');
+
+var game = require('../index.js');
 var assert = require('assert');
 var chai = require('chai');
 var expect = chai.expect;
@@ -9,11 +9,10 @@ var possibleNums = [1,2,3,4,5,6,7,8,9];
 describe('remaining', function() {
     it('should return the number of squares left to solve', function() {
         expect(game.remaining()).to.be.a('number');
-        expect(game.remaining()).to.be.less.than(81);
-        expect(game.remaining()).to.be.more.than(-1);
+        expect(game.remaining()).to.be.within(-1,81);
     })
 })
-
+/*
 describe('confirm', function() {
   it('sum of completed row/col/block to be 45', function() {
       expect(game.confirm.row()).to.equal.sum.of(45);
@@ -39,15 +38,16 @@ describe('Game', function() {
             expect(squares.possibleNums()).to.NOT.BE.ANYWHERE.ELSE.IN.THE.BLOCK()
     })
 });
-
+*/
 describe('Game', function() {
     describe('lookSquares', function() {
-      it('return the number of unfinished squares remaining in row/col/block.')
-          expect(square.finished()).to.be.a('number');
-          expect(square.notFinished()).to.equal('.');
+      it('return the number of unfinished squares remaining in row/col/block.', function(){
+        expect(game.neededToFinish(0)).to.be.a('number');
+
+      })                  
     })
 });
-
+/*
 describe('locateRow', function() {
   it('should return a row number within range 0-8. based on math', function() {
       expect(game.locateRow(squareNum)).to.be.a('number');
@@ -58,7 +58,7 @@ describe('locateRow', function() {
     })
 });
 
-
+*/
 //---------------------------
 //describe('The post-pop array length', function() {
 //    it('should return the new array length', function() {
