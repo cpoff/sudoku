@@ -163,15 +163,15 @@ while(grid.remaining() > 0 && counterzzz < 20){
                 if(_.difference(completedArray,rowArray,colArray,blockArray).length === 1){
                     var val = _.difference(completedArray,rowArray,colArray,blockArray)[0]
                     grid.rows[x].sqrs[y].value = val;
-                    console.log('we changed something')
+                    console.log('Beep bop boop')
                 }
             } else{
-                console.log('You\'re good!')
+                console.log('Solved!')
             }
         }
     }
     counterzzz++;
     console.log(counterzzz)
-        console.log(grid.remaining());
+    console.log(grid.remaining());
 
 }
