@@ -16,11 +16,13 @@ describe("Game", function() {
 
         
 describe('remaining', function() {
-  it('should return number of squares left to solve', function() { 
-    expect(game.remaining()).to.be.a('number');
-    expect(game.remaining()).to.be.within(-1, 81)
-  })
-});
+    it('should return the number of squares left to solve', function() {
+        expect(game.remaining()).to.be.a('number');
+        expect(game.remaining()).to.be.less.than(81);
+        expect(game.remaining()).to.be.more.than(-1);
+    })
+})
+
 
 describe('confirm', function() {
   it('sum of completed row/col/block to be 45', function() {   
@@ -118,14 +120,14 @@ function locateRow(squareNum) {
 describe("Game", function() {
 	describe('game methods', function() {
 
-		describe('remaining', function() {
-			it('should return the number of squares left to solve', function() {
-				expect(game.remaining()).to.be.a('number');
-				expect(game.remaining()).to.be.less.than(81);
-				expect(game.remaining()).to.be.more.than(-1);
+        describe('remaining', function() {
+            it('should return the number of squares left to solve', function() {
+                expect(game.remaining()).to.be.a('number');
+                expect(game.remaining()).to.be.less.than(81);
+                expect(game.remaining()).to.be.more.than(-1);
 
-			})
-		})
+            })
+        })
 		describe('finished', function() {
 			it('should check the sum of all rows, cols, block to ensure 45')
 		})
